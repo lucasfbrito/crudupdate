@@ -5,7 +5,6 @@ import Registro from './registro';
 import App from './App';
 import Empleados  from './empleados'
 import Clientes from './clientes';
-import Ventas from './Ventas';
 import { BrowserRouter,Route,Routes} from 'react-router-dom';
 
 
@@ -23,7 +22,6 @@ function Inicio() {
           <Route path='/empleados' element={<Empleados />} />
           <Route path='/clientes' element={<Clientes />} />
           <Route path='/app' element={<App />} />
-          <Route path='/ventas' element={<Ventas />} />
          
         </Routes>
       </BrowserRouter>

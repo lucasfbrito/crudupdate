@@ -14,7 +14,7 @@ function Clientes() {
   const[edad,setedad]=useState();
   const[pais,setpais]=useState("");
   const[direccion,setdireccion]=useState("");
-  const[idCliente,setid]=useState();
+  const[idcliente,setidcliente]=useState();
   const[editar,seteditar]=useState(false);
 
 // Estado para almacenar la lista de clientes
@@ -85,8 +85,8 @@ const update = ()=>{
  }
 
  // Realiza la solicitud para actualizar un empleado
-   Axios.put("http://localhost:3001/updateclientes",{
-   idcliente: idCliente,  
+   Axios.put("http://localhost:3001/updatecliente",{
+   idcliente: idcliente,  
    nombre: nombre,
    edad: edad,
    pais: pais,
@@ -111,7 +111,7 @@ const update = ()=>{
 
 
     // Función para eliminar un cliente
-  const deleteEmple = (val) => {
+  const deleteclient = (val) => {
     // Muestra un cuadro de confirmacion para borrar
     Swal.fire({
       title: 'Confirmar eliminado?',
@@ -154,7 +154,7 @@ const update = ()=>{
     setedad("");
     setpais("");
     setdireccion("");
-    setid("");
+    setidcliente("");
     seteditar(false);
   }
  // Función para obtener la lista de clientes
@@ -170,8 +170,9 @@ const editarCliente = (val)=>{
     seteditar(true);
     setnombre(val.nombre);
     setedad(val.edad);
+    setpais(val.pais);
     setdireccion(val.direccion);
-    setid(val.id);
+    setidcliente(val.id);
     }
 
 
@@ -179,7 +180,7 @@ return (
     <div>
      <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
-  <Link to="/app"><a className="navbar-brand" href="#">Gestor</a></Link>
+  <Link to="/App"><a className="navbar-brand" href="#">Empleados</a></Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -187,7 +188,6 @@ return (
       <div className="navbar-nav">
       <Link to="/empleados"><a className="nav-link active" aria-current="page" href="#">Empleados</a></Link>
       <Link to="/clientes"><a className="nav-link" href="#">Clientes</a></Link>
-      <Link to="/Ventas">  <a className="nav-link" href="#">Ventas</a></Link>
       <Link to="/"><a className="nav-link disabled" aria-disabled="true">Cerrar sesion</a></Link>
       </div>
     </div>
@@ -254,7 +254,7 @@ return (
       <table className="table table-striped">
       <thead>
     <tr>
-      <th scope="col">IdCliente</th>
+      <th scope="col">Idcliente</th>
       <th scope="col">Nombre</th>
       <th scope="col">Edad</th>
       <th scope="col">Pais</th>
@@ -279,7 +279,7 @@ return (
       className="btn btn-info">Editar</button>
       <button type="button"
       onClick={()=>{
-        deleteEmple(val);
+        deleteclient(val);
       }}
       
       className="btn btn-danger">Eliminar</button>

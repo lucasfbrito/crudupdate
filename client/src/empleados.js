@@ -208,7 +208,6 @@ setid(val.id);
       <div className="navbar-nav">
       <Link to="/empleados"><a className="nav-link active" aria-current="page" href="#">Empleados</a></Link>
       <Link to="/clientes"><a className="nav-link" href="#">Clientes</a></Link>
-      <Link to="/Ventas">  <a className="nav-link" href="#">Ventas</a></Link>
       <Link to="/"><a className="nav-link disabled" aria-disabled="true">Cerrar sesion</a></Link>
       </div>
     </div>

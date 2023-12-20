@@ -6,9 +6,9 @@ background-size: cover;
 font-family: 'Poppins', sans-serif;
 }
 .form {
-  --font-color: #ffffff;
+  --font-color: #0e0e0e;
   --font-color-sub: #030303;
-  --bg-color: #f7f7f7;
+  --bg-color: #white;
   --main-color: #000000;
   padding: 20px;
   background: rgba(211, 211, 211, 0.032);

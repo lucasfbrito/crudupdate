@@ -12,7 +12,6 @@ app.use(express.json());
 const db=mysql.createConnection({
     host:"localhost",
     user:"root",
-    password:"formis829",
     database:"empleados_crud"
 });
 
@@ -181,7 +180,7 @@ app.get("/clientes",(req,res)=>{
   );    
 });
 //Actualiza los registros de clientes
-app.put("/updateclientes",(req,res)=>{
+app.put("/updatecliente",(req,res)=>{
   const token = req.headers.authorization.split(' ')[1];
   const idcliente = req.body.idcliente;
   const nombre = req.body.nombre;
@@ -216,7 +215,7 @@ app.put("/updateclientes",(req,res)=>{
 });
 });
 // Permite borrar los datos de el cliente
-app.delete("/deletecliente/:id",(req,res)=>{
+app.delete("/deletecliente/:idcliente",(req,res)=>{
   const idcliente = req.params.idcliente;
   const token = req.headers.authorization.split(' ')[1];
   if (!token) {
@@ -242,90 +241,6 @@ app.delete("/deletecliente/:id",(req,res)=>{
       } 
       }
   );    
-});
-
-//Ventas
-//Se utiliza para crear una venta
-app.post("/createventa", (req, res) => {
-  const token = req.headers.authorization.split(' ')[1];
-  const nombre = req.body.nombre;
-  const monto = req.body.monto;
-  const descripcion = req.body.descripcion;
-  const idcliente = req.body.idcliente;
-
-  if (!token) {
-    return res.status(401).json({ message: 'Token no proporcionado' });
-  }
-  jwt.verify(token, 'fede', (err, decoded) => {
-    if (err) {
-      if (err.name === 'TokenExpiredError') {
-        return res.status(401).json({ message: 'Token expirado, reinicia sesión' });
-        
-      } else {
-        return res.status(401).json({ message: 'Token inválido' });
-      }
-    }
-
-    // Si el token es válido, se procede con la inserción en la base de datos
-    db.query("INSERT INTO ventas(nombre_venta, monto, descripcion_venta, idcliente) VALUES (?, ?, ?, ?)",
-      [nombre, monto, descripcion, idcliente],
-      (err, result) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).json({ message: 'Error al insertar en la base de datos' });
-        }
-
-        res.status(200).json({ message: 'Datos insertados correctamente', result });
-      }
-    );
-  });
-});
-
-app.get("/ventas",(req,res)=>{   
-  db.query("SELECT * FROM  ventas" ,
-  (err,result)=>{
-      if(err){
-          console.log(err);
-      }else{
-          res.send(result);
-      }
-      }
-  );    
-});
-
-app.put("/updateventas",(req,res)=>{
-  const token = req.headers.authorization.split(' ')[1];
-  const idventa = req.body.idventa;
-  const nombre = req.body.nombre;
-  const monto = req.body.monto;
-  const descripcion = req.body.descripcion;
-  const idcliente = req.body.idcliente
-  
-  if (!token) {
-      return res.status(401).json({ message: 'Token no proporcionado' });
-    }
-  
-    jwt.verify(token, 'fede', (err, decoded) => {
-      if (err) {
-        if (err.name === 'TokenExpiredError') {
-          return res.status(401).json({ message: 'Token expirado, reinicia sesión' });
-          
-        } else {
-          return res.status(401).json({ message: 'Token inválido' });
-        }
-      }
-   
-  db.query("UPDATE ventas SET nombre_venta=?,monto=?,descripcion=?,idcliente=? WHERE idventa=? ", [nombre,monto,descripcion,idcliente],
-  (err,result)=>{
-      if(err){
-          console.log(err);
-
-      }else{
-          res.send(result);
-      }    
-      }
-  );    
-});
 });
 
 

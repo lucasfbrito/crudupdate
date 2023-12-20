@@ -41,14 +41,14 @@ function Registro() {
     <div className="title">Bienvenido<br /><span>Registrese para continuar</span></div>
     <input
       type="text"
-      placeholder="username"
+      placeholder="Username"
       name="user"
       className="input"
       onChange={(event) => setUsername(event.target.value)}
     />
      <input
       type="email"
-      placeholder="email"
+      placeholder="Email"
       name="email"
       className="input"
       onChange={(event) => setEmail(event.target.value)}
@@ -60,7 +60,7 @@ function Registro() {
       className="input"
       onChange={(event) => setPassword(event.target.value)}
     />
-    <button className="button-confirm" id="registerbtn" onClick={register}>registrar</button>
+    <button className="button-confirm" id="registerbtn" onClick={register}>Registrar</button>
   </form>
 
   );

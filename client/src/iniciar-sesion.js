@@ -34,6 +34,7 @@ function LoginForm() {
             icon: 'success',
             timer: 3000
           });
+          navigate(`/App`);
         } else if (response.status === 401) {
           // Muestra un mensaje de error en caso de credenciales incorrectas
           Swal.fire({
